@@ -1,5 +1,5 @@
 [workspace]
-members = ["crm", "proto-builder-trait", "user-stat"]
+members = ["crm", "crm-metadata", "crm-send", "proto-builder-trait", "user-stat"]
 resolver = "2"
 
 [workspace.dependencies]

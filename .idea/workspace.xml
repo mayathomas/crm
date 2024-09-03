@@ -8,13 +8,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="526cf969-d9b5-49d7-81a3-c1d29410877e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/crm-metadata/Cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crm-metadata/build.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crm-metadata/metadata.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crm-metadata/src/config.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crm-metadata/src/lib.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crm-metadata/src/main.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crm-metadata/src/pb/metadata.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crm-metadata/src/pb/mod.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crm-send/Cargo.toml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/crm-send/src/main.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/protos/metadata/messages.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/protos/metadata/rpc.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.vscode/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/settings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/crm/build.rs" beforeDir="false" afterPath="$PROJECT_DIR$/crm/build.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/crm/src/pb/crm.rs" beforeDir="false" afterPath="$PROJECT_DIR$/crm/src/pb/crm.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/protos/crm.proto" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-stat/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/user-stat/Cargo.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user-stat/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/user-stat/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user-stat/src/pb/user_stats.rs" beforeDir="false" afterPath="$PROJECT_DIR$/user-stat/src/pb/user_stats.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,29 +39,29 @@
   <component name="MacroExpansionManager">
     <option name="directoryName" value="ovo3hv2k" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2lXU9sVWMTAsVD9VRbYgUn2cuil" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.rust.reset.selective.auto.import": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/maya/_CODE/crm",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
-    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
-    "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.rust.reset.selective.auto.import&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/maya/_CODE/crm&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Cargo.Test crm">
     <configuration name="Run client" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
       <option name="command" value="run --package crm --bin client" />
@@ -115,6 +127,7 @@
       <option name="presentableId" value="Default" />
       <updated>1725325766613</updated>
       <workItem from="1725325767639" duration="1886000" />
+      <workItem from="1725343772464" duration="37000" />
     </task>
     <servers />
   </component>
