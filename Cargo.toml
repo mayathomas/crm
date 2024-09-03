@@ -1,14 +1,16 @@
 [workspace]
-members = ["crm", "user-stat"]
+members = ["crm", "proto-builder-trait", "user-stat"]
 resolver = "2"
 
 [workspace.dependencies]
 anyhow = "1.0.86"
 chrono = { version = "0.4.38", features = ["serde"] }
+proto-builder-trait = { path = "./proto-builder-trait" }
 prost = "0.13.1"
 prost-build = "0.13.1"
 prost-types = "0.13.1"
-serde = "1.0.209"
+serde = { version = "1.0.209", features = ["derive"] }
+serde_yaml = "0.9.34"
 sqlx = { version = "0.8.1", features = [
     "chrono",
     "postgres",
@@ -18,3 +20,5 @@ sqlx = { version = "0.8.1", features = [
 tokio = { version = "1.39.3", features = ["rt", "rt-multi-thread", "macros"] }
 tonic = { version = "0.12.2", features = ["zstd", "tls"] }
 tonic-build = "0.12.2"
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
