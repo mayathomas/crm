@@ -66,3 +66,71 @@ impl Deref for UserStatsService {
         &self.inner
     }
 }
+
+#[cfg(feature = "test_utils")]
+pub mod test_utils {
+    use anyhow::Result;
+    use chrono::Utc;
+    use prost_types::Timestamp;
+
+    use crate::pb::{IdQuery, TimeQuery};
+
+    use std::{env, path::Path};
+
+    use super::*;
+    use sqlx::{Executor, PgPool};
+    use sqlx_db_tester::TestPg;
+
+    pub async fn get_test_pool(url: Option<&str>) -> (TestPg, PgPool) {
+        let url = match url {
+            Some(url) => url.to_string(),
+            None => "postgres://postgres:postgres@localhost:5432".to_string(),
+        };
+        let p = Path::new(&env::var("CARGO_MANIFEST_DIR").unwrap()).join("migrations");
+        let tdb = TestPg::new(url, p);
+        let pool = tdb.get_pool().await;
+
+        let sql = include_str!("../fixtures/data.sql").split(';');
+        let mut ts = pool.begin().await.expect("begin transaction failed");
+        for s in sql {
+            if s.trim().is_empty() {
+                continue;
+            }
+            ts.execute(s).await.expect("execute sql failed");
+        }
+        ts.commit().await.expect("commit transaction failed");
+        (tdb, pool)
+    }
+
+    impl UserStatsService {
+        pub async fn new_for_test() -> Result<(TestPg, Self)> {
+            let config = AppConfig::load()?;
+            let pos = config.server.db_url.rfind('/').expect("Invalid db_url");
+            let server_url = &config.server.db_url[..pos];
+            let (tdb, pool) = get_test_pool(Some(server_url)).await;
+            let svc = Self {
+                inner: Arc::new(UserStatsServiceInner { config, pool }),
+            };
+            Ok((tdb, svc))
+        }
+    }
+    pub fn id(id: &[u32]) -> IdQuery {
+        IdQuery { ids: id.to_vec() }
+    }
+
+    pub fn tq(lower: Option<i64>, upper: Option<i64>) -> TimeQuery {
+        TimeQuery {
+            lower: lower.map(to_ts),
+            upper: upper.map(to_ts),
+        }
+    }
+    pub fn to_ts(days: i64) -> Timestamp {
+        let dt = Utc::now()
+            .checked_sub_signed(chrono::Duration::days(days))
+            .unwrap();
+        Timestamp {
+            seconds: dt.timestamp(),
+            nanos: dt.timestamp_subsec_nanos() as i32,
+        }
+    }
+}
