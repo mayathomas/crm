@@ -1,5 +1,9 @@
 server:
-  port: 50003
+  port: 50000
+  sender_email: crm@acme.org
+  user_stats: http://[::1]:50001
+  metadata: http://[::1]:50002
+  notification: http://[::1]:50003
 auth:
   pk: |
     -----BEGIN PUBLIC KEY-----

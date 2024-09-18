@@ -35,4 +35,5 @@ tonic = { version = "0.12.2", features = ["zstd", "tls"] }
 tonic-build = "0.12.2"
 tracing = "0.1.40"
 tracing-subscriber = { version = "0.3.18", features = ["env-filter"] }
+uuid = { version = "1.10.0", features = ["v4"] }
 user-stat = { path = "./user-stat" }

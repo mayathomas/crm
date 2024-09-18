@@ -12,6 +12,10 @@ pub struct AppConfig {
 #[derive(Debug, Deserialize, Serialize)]
 pub struct ServerConfig {
     pub port: u16,
+    pub sender_email: String,
+    pub metadata: String,
+    pub user_stats: String,
+    pub notification: String,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -23,9 +27,9 @@ impl AppConfig {
     pub fn load() -> Result<Self> {
         // read from ./app.yml, or /etc/config/app.yml, or from env CHAT_CONFIG
         let ret = match (
-            File::open("send.yml"),
-            File::open("/etc/config/send.yaml"),
-            std::env::var("SEND_CONFIG"),
+            File::open("crm.yml"),
+            File::open("/etc/config/crm.yaml"),
+            std::env::var("CRM_CONFIG"),
         ) {
             (Ok(file), _, _) => serde_yaml::from_reader(file),
             (_, Ok(file), _) => serde_yaml::from_reader(file),

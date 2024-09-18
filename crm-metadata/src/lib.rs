@@ -3,14 +3,14 @@ pub mod pb;
 
 mod config;
 
-use std::pin::Pin;
-
+pub use abi::Tpl;
 pub use config::AppConfig;
 use futures::Stream;
 use pb::{
     metadata_server::{Metadata, MetadataServer},
     Content, MaterializeRequest,
 };
+use std::pin::Pin;
 use tonic::{async_trait, Request, Response, Status, Streaming};
 
 type ServiceResult<T> = Result<Response<T>, Status>;
