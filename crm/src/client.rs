@@ -1,6 +1,7 @@
 use anyhow::Result;
 use crm::pb::{crm_client::CrmClient, WelcomeRequestBuilder};
 use tonic::{
+    metadata::MetadataValue,
     transport::{Certificate, Channel, ClientTlsConfig},
     Request,
 };
@@ -18,7 +19,13 @@ async fn main() -> Result<()> {
         .await?;
     // let addr = format!("http://[::1]:50000");
     // let addr = format!("http://127.0.0.1:80");
-    let mut client = CrmClient::new(channel);
+    let token = include_str!("../../fixtures/token");
+    println!("{token}");
+    let token: MetadataValue<_> = format!("Bearer {token}").parse()?;
+    let mut client = CrmClient::with_interceptor(channel, move |mut req: Request<()>| {
+        req.metadata_mut().insert("authorization", token.clone());
+        Ok(req)
+    });
     let req = WelcomeRequestBuilder::default()
         .id(Uuid::new_v4().to_string())
         .interval(90u32)

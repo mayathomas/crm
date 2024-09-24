@@ -2,6 +2,7 @@ mod abi;
 mod config;
 pub mod pb;
 
+use abi::auth;
 use anyhow::Result;
 pub use config::AppConfig;
 
@@ -11,7 +12,8 @@ use pb::{
     crm_server::{Crm, CrmServer},
     RecallRequest, RecallResponse, RemindRequest, RemindResponse, WelcomeRequest, WelcomeResponse,
 };
-use tonic::{async_trait, transport::Channel, Request};
+use tonic::{async_trait, service::interceptor::InterceptedService, transport::Channel, Request};
+use tracing::info;
 use user_stat::pb::user_stats_client::UserStatsClient;
 
 pub struct CrmService {
@@ -27,6 +29,8 @@ impl Crm for CrmService {
         &self,
         request: Request<WelcomeRequest>,
     ) -> Result<tonic::Response<WelcomeResponse>, tonic::Status> {
+        let user: &auth::User = request.extensions().get().unwrap();
+        info!("user: {:?}", user);
         self.welcome(request.into_inner()).await
     }
     ///  last visited or watched in X days, give them something to watch
@@ -58,7 +62,10 @@ impl CrmService {
         })
     }
 
-    pub fn into_server(self) -> CrmServer<Self> {
-        CrmServer::new(self)
+    pub fn into_server(
+        self,
+    ) -> Result<InterceptedService<CrmServer<CrmService>, auth::DecodingKey>> {
+        let dk = auth::DecodingKey::load(&self.config.auth.pk)?;
+        Ok(CrmServer::with_interceptor(self, dk))
     }
 }
